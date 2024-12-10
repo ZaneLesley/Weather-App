@@ -23,9 +23,32 @@ footer {
     padding: 1em;
     text-align: center;
 }
-
-.container {
+.weather-container {
+    display: flex;
     flex-grow: 1;
+    flex-direction: column;
+}
+
+#weather-current {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#weather-current div {
+    margin: 1em;
+}
+
+#weather-forecast {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.weather-card {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    flex: 1 1 calc(20% - 1em);
 }
 
 

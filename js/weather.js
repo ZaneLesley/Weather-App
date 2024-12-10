@@ -10,22 +10,16 @@ export async function getWeather(zipCode) {
             currentConditions: {
                 conditions: weatherData.currentConditions.conditions,
                 datetime: weatherData.currentConditions.datetime,
-                description: weatherData.currentConditions.description,
                 dew: weatherData.currentConditions.dew,
                 feelslike: weatherData.currentConditions.feelslike,
-                feelslikemax: weatherData.currentConditions.feelslikemax,
-                feelslikemin: weatherData.currentConditions.feelslikemin,
                 humidity: weatherData.currentConditions.humidity,
                 icon: weatherData.currentConditions.icon,
                 precip: weatherData.currentConditions.precip,
                 precipprob: weatherData.currentConditions.precipprob,
-                severerisk: weatherData.currentConditions.severerisk,
                 snow: weatherData.currentConditions.snow,
                 sunrise: weatherData.currentConditions.sunrise,
                 sunset: weatherData.currentConditions.sunset,
                 temp: weatherData.currentConditions.temp,
-                tempmax: weatherData.currentConditions.tempmax,
-                tempmin: weatherData.currentConditions.tempmin,
                 visibility: weatherData.currentConditions.visibility,
                 winddir: weatherData.currentConditions.winddir,
                 windgust: weatherData.currentConditions.windgust,
@@ -62,5 +56,45 @@ export async function getWeather(zipCode) {
     } catch (error) {
         console.error("Error fetching and parsing data", error)
         throw error;
+    }
+}
+
+export async function displayCurrentConditions(weatherData) {
+    const weatherContainer = document.getElementById('weather-current')
+    try{
+        weatherContainer.innerHTML = ""
+
+        for (let key in weatherData.currentConditions) {
+            let div = document.createElement('div');
+            div.id = `${key}`
+            let value = weatherData.currentConditions[key];
+            div.innerHTML = `${key}: ${value}`;
+            weatherContainer.appendChild(div);
+        }
+    } catch (error) {
+        console.error("Error in generating weather HTML", error);
+    }
+}
+
+export async function displayForecast(weatherData) {
+    const weatherForecast = document.getElementById('weather-forecast')
+    try{
+        weatherForecast.innerHTML = ""
+        weatherData.days.forEach(day =>{
+            let weatherCard = document.createElement('div');
+            weatherCard.className = "weather-card"
+            weatherCard.id = `day-${day.datetime}`
+            for (let key in day) {
+                let div = document.createElement('div');
+                div.id = `${key}`
+                div.className = "weather-card-values"
+                let value = day[key];
+                div.innerHTML = `${key}: ${value}`;
+                weatherCard.appendChild(div);
+            }
+            weatherForecast.appendChild(weatherCard);
+        })
+    } catch (error) {
+        console.error("Error in generating weather forecast HTML", error);
     }
 }

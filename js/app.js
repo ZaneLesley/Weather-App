@@ -1,4 +1,4 @@
-import {getWeather} from './weather.js'
+import {getWeather, displayCurrentConditions, displayForecast} from './weather.js'
 
 const weatherForm = document.getElementById('weather-form')
 const zip = document.getElementById('zip')
@@ -14,6 +14,9 @@ weatherForm.addEventListener('submit', async (e) => {
     try {
         const weatherData = await getWeather(zipCode);
         console.log(weatherData);
+        await displayCurrentConditions(weatherData);
+        await displayForecast(weatherData);
+
     } catch (error) {
         console.error("Error in fetching data" , error);
     }
