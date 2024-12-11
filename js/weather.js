@@ -3,7 +3,7 @@ export async function getWeather(zipCode) {
         const url = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/'
         const api_key = '?key=W2XEKW3Y38KXAWL369RP994SN'
         // https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/[location]/[date1]/[date2]?key=YOUR_API_KEY
-        const full_url = url + zipCode + api_key
+        const full_url = url + zipCode + '/next9days' + api_key
         const response = await fetch(full_url, {mode: 'cors'});
         const weatherData = await response.json();
         return {
@@ -17,8 +17,17 @@ export async function getWeather(zipCode) {
                 precip: weatherData.currentConditions.precip,
                 precipprob: weatherData.currentConditions.precipprob,
                 snow: weatherData.currentConditions.snow,
-                sunrise: weatherData.currentConditions.sunrise,
-                sunset: weatherData.currentConditions.sunset,
+                // Use a random date to get AM/PM
+                sunrise: new Date(`1970-01-01T${weatherData.currentConditions.sunrise}`).toLocaleString('en-US', {
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: true,
+                }),
+                sunset: new Date(`1970-01-01T${weatherData.currentConditions.sunset}`).toLocaleString('en-US', {
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: true,
+                }),
                 temp: weatherData.currentConditions.temp,
                 visibility: weatherData.currentConditions.visibility,
                 winddir: weatherData.currentConditions.winddir,
@@ -26,22 +35,26 @@ export async function getWeather(zipCode) {
                 windspeed: weatherData.currentConditions.windspeed,
             },
             days: weatherData.days.map(day => ({
-                //conditions: day.conditions,
+                conditions: day.conditions,
                 datetime: day.datetime,
-                description: day.description,
+                //description: day.description,
                 dew: day.dew,
-                feelslike: day.feelslike,
-                feelslikemax: day.feelslikemax,
-                feelslikemin: day.feelslikemin,
                 humidity: day.humidity,
                 icon: day.icon,
                 precip: day.precip,
                 precipprob: day.precipprob,
                 severerisk: day.severerisk,
                 snow: day.snow,
-                sunrise: day.sunrise,
-                sunset: day.sunset,
-                temp: day.temp,
+                sunrise: new Date(`1970-01-01T${day.sunrise}`).toLocaleString('en-US', {
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: true,
+                }),
+                sunset: new Date(`1970-01-01T${day.sunset}`).toLocaleString('en-US', {
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: true,
+                }),
                 tempmax: day.tempmax,
                 tempmin: day.tempmin,
                 visibility: day.visibility,
@@ -78,14 +91,22 @@ export async function displayCurrentConditions(weatherData) {
     } catch (error) {
         console.error("Error in generating weather HTML", error);
     }
+
+    let video = document.createElement('video');
+    video.className = "weather-container-video";
+    video.src = "img/raining.mp4"
+    video.loop = true;
+    video.muted = true;
+    video.autoplay = true;
+    weatherContainer.appendChild(video);
 }
 
 export async function displayForecast(weatherData) {
     const weatherForecast = document.getElementById('weather-forecast')
     // Used to map for weatherData for divs.
     const categories = {
-        temperature: ["temp", "feelslike", "tempmax", "tempmin"],
-        weather: ["description", "sunset", "sunrise"],
+        temperature: ["tempmax", "tempmin"],
+        weather: ["conditions", "sunset", "sunrise"],
         rain: ["dew", "humidity", "precip", "precipprob", "snow"],
         wind: ["visibility", "winddir", "windgust", "windspeed"]
     }
@@ -109,8 +130,11 @@ export async function displayForecast(weatherData) {
                     let div = document.createElement('div');
                     div.id = `${key}`
                     div.className = "weather-card-values"
-                    let value = day[key];
+                    let value = typeof day[key] === "number" ? Math.round(day[key]) : day[key];
                     div.innerHTML = `${value}`;
+                    if (key === "temp" || key === "feelslike" || key === "tempmax" || key === "tempmin") {
+                        div.insertAdjacentHTML("beforeend", `°`)
+                    }
 
                     for (let category in categories) {
                         if (categories[category].includes(key)) {

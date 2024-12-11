@@ -27,6 +27,7 @@ footer {
     display: flex;
     flex-grow: 1;
     flex-direction: column;
+    background-color: transparent;
 }
 
 #weather-current {
@@ -49,16 +50,38 @@ footer {
     display: grid;
     grid-template-rows: auto auto;
     grid-template-columns: 0.25fr 1fr;
-    width: 20%;
+    width: 15%;
     gap: 1em;
     margin: 1em;
     padding: 0.5em;
     border-top-right-radius: 1em;
     border-top-left-radius: 1em;
-    background-color: white;
+    background-color: transparent;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
     min-width: 170px;
     min-height: 300px;
+    position: relative;
+}
+
+.weather-container-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+
+.weather-category-temperature,
+.weather-category-weather,
+.weather-category-rain,
+.weather-category-wind {
+    background-color: rgba(85, 84, 84, 0.95);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.39);
+    border-radius: 0.5em;
+    padding: 0.5em;
 }
 
 .weather-category-temperature {
@@ -79,6 +102,14 @@ footer {
 .weather-category-wind {
     grid-column: 1 / 3;
     grid-row: 3;
+}
+
+#tempmax, #tempmin {
+    font-size: 2em;
+}
+
+#description {
+    font-size: 0.75em;
 }
 
 

@@ -9,3 +9,5 @@ dist
 /.idea/modules.xml
 /.idea/vcs.xml
 /.editorconfig
+/img/*.mp4
+
