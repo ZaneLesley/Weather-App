@@ -8,7 +8,7 @@ export async function getWeather(zipCode) {
         const weatherData = await response.json();
         return {
             currentConditions: {
-                conditions: weatherData.currentConditions.conditions,
+                //conditions: weatherData.currentConditions.conditions,
                 datetime: weatherData.currentConditions.datetime,
                 dew: weatherData.currentConditions.dew,
                 feelslike: weatherData.currentConditions.feelslike,
@@ -26,7 +26,7 @@ export async function getWeather(zipCode) {
                 windspeed: weatherData.currentConditions.windspeed,
             },
             days: weatherData.days.map(day => ({
-                conditions: day.conditions,
+                //conditions: day.conditions,
                 datetime: day.datetime,
                 description: day.description,
                 dew: day.dew,
@@ -61,15 +61,19 @@ export async function getWeather(zipCode) {
 
 export async function displayCurrentConditions(weatherData) {
     const weatherContainer = document.getElementById('weather-current')
-    try{
+    try {
         weatherContainer.innerHTML = ""
 
         for (let key in weatherData.currentConditions) {
-            let div = document.createElement('div');
-            div.id = `${key}`
-            let value = weatherData.currentConditions[key];
-            div.innerHTML = `${key}: ${value}`;
-            weatherContainer.appendChild(div);
+            if (key === 'icon') {
+                // Do Nothing
+            } else {
+                let div = document.createElement('div');
+                div.id = `${key}`
+                let value = weatherData.currentConditions[key];
+                div.innerHTML = `${key}: ${value}`;
+                weatherContainer.appendChild(div);
+            }
         }
     } catch (error) {
         console.error("Error in generating weather HTML", error);
@@ -78,19 +82,45 @@ export async function displayCurrentConditions(weatherData) {
 
 export async function displayForecast(weatherData) {
     const weatherForecast = document.getElementById('weather-forecast')
-    try{
+    // Used to map for weatherData for divs.
+    const categories = {
+        temperature: ["temp", "feelslike", "tempmax", "tempmin"],
+        weather: ["description", "sunset", "sunrise"],
+        rain: ["dew", "humidity", "precip", "precipprob", "snow"],
+        wind: ["visibility", "winddir", "windgust", "windspeed"]
+    }
+
+    try {
         weatherForecast.innerHTML = ""
-        weatherData.days.forEach(day =>{
+        weatherData.days.forEach(day => {
             let weatherCard = document.createElement('div');
             weatherCard.className = "weather-card"
             weatherCard.id = `day-${day.datetime}`
+            let categoryDivs = {};
+            for (let category in categories) {
+                let categoryDiv = document.createElement('div')
+                categoryDiv.className = `weather-category-${category}`
+                categoryDivs[category] = categoryDiv;
+            }
             for (let key in day) {
-                let div = document.createElement('div');
-                div.id = `${key}`
-                div.className = "weather-card-values"
-                let value = day[key];
-                div.innerHTML = `${key}: ${value}`;
-                weatherCard.appendChild(div);
+                if (key === "icon") {
+                    // Do Nothing
+                } else {
+                    let div = document.createElement('div');
+                    div.id = `${key}`
+                    div.className = "weather-card-values"
+                    let value = day[key];
+                    div.innerHTML = `${value}`;
+
+                    for (let category in categories) {
+                        if (categories[category].includes(key)) {
+                            categoryDivs[category].appendChild(div);
+                        }
+                    }
+                }
+            }
+            for (let category in categories) {
+                weatherCard.appendChild(categoryDivs[category]);
             }
             weatherForecast.appendChild(weatherCard);
         })

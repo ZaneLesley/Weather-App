@@ -42,13 +42,43 @@ footer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .weather-card {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 0.25fr 1fr;
+    width: 20%;
+    gap: 1em;
     margin: 1em;
-    flex: 1 1 calc(20% - 1em);
+    padding: 0.5em;
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    min-width: 170px;
+    min-height: 300px;
+}
+
+.weather-category-temperature {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.weather-category-weather {
+    grid-column: 2;
+    grid-row: 1
+}
+
+.weather-category-rain {
+    grid-column: 1 / 3;
+    grid-row: 2;
+}
+
+.weather-category-wind {
+    grid-column: 1 / 3;
+    grid-row: 3;
 }
 
 
