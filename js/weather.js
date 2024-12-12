@@ -107,7 +107,7 @@ export async function displayForecast(weatherData) {
     const categories = {
         temperature: ["tempmax", "tempmin"],
         weather: ["conditions", "sunset", "sunrise"],
-        rain: ["dew", "humidity", "precip", "precipprob", "snow"],
+        rain: ["dew", "humidity", "precip", "precipprob"],
         wind: ["visibility", "winddir", "windgust", "windspeed"]
     }
 
@@ -127,6 +127,7 @@ export async function displayForecast(weatherData) {
                 if (key === "icon") {
                     // Do Nothing
                 } else {
+                    // Div for API call from earlier
                     let div = document.createElement('div');
                     div.id = `${key}`
                     div.className = "weather-card-values"
@@ -136,9 +137,43 @@ export async function displayForecast(weatherData) {
                         div.insertAdjacentHTML("beforeend", `°`)
                     }
 
+                    // Div for description of each item
+                    let div2 = document.createElement('div');
+                    div2.id = `${key}-details`
+                    div2.className = "weather-card-details"
+                    if (key === "tempmax") {
+                        div2.innerHTML = "max"
+                    } else if (key === "tempmin") {
+                        div2.innerHTML = "min"
+                    } else if (key === "sunset") {
+                        div2.innerHTML = "sunset"
+                    } else if (key === "sunrise") {
+                        div2.innerHTML = "sunset"
+                    } else if (key === "dew") {
+                        div2.innerHTML = "dew"
+                    } else if (key === "humidity") {
+                        div2.innerHTML = "humidity"
+                    } else if (key === "precip") {
+                        div2.innerHTML = "precipitation"
+                    } else if (key === "precipprob") {
+                        div2.innerHTML = "precipitation chance"
+                    } else if (key === "visibility") {
+                        div2.innerHTML = "visibility"
+                    } else if (key === "winddir") {
+                        div2.innerHTML = "wind direction"
+                    } else if (key === "windgust") {
+                        div2.innerHTML = "wind gust"
+                    } else if (key === "windspeed") {
+                        div2.innerHTML = "wind speed"
+                    }
+
                     for (let category in categories) {
                         if (categories[category].includes(key)) {
-                            categoryDivs[category].appendChild(div);
+                            let div3 = document.createElement('div');
+                            div3.className = `${category}-category-container`;
+                            div3.appendChild(div);
+                            div3.appendChild(div2);
+                            categoryDivs[category].appendChild(div3);
                         }
                     }
                 }

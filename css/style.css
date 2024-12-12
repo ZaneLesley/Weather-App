@@ -5,13 +5,14 @@ html {
     box-sizing: border-box;
     height: 100%;
     font-family: "Courier New", Courier, monospace;
+    text-align: center;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.main{
+.main {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -23,6 +24,7 @@ footer {
     padding: 1em;
     text-align: center;
 }
+
 .weather-container {
     display: flex;
     flex-grow: 1;
@@ -63,26 +65,67 @@ footer {
     position: relative;
 }
 
-.weather-container-video {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
+.weather-category-container,
+.tempature-category-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+.rain-category-container,
+.wind-category-container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(32, 31, 31, 0.5);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.39);
+    border-radius: 0.2em;
+    aspect-ratio : 1 / 0.8;
+    width: 70%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: auto;
+    padding: 0.2em;
+}
 
-.weather-category-temperature,
-.weather-category-weather,
+.weather-card-values#visibility,
+.weather-card-values#winddir,
+.weather-card-values#windgust,
+.weather-card-values#windspeed,
+.weather-card-values#precipprob,
+.weather-card-values#dew,
+.weather-card-values#humidity,
+.weather-card-values#precip{
+    font-size: 1.7em;
+}
+
 .weather-category-rain,
 .weather-category-wind {
-    background-color: rgba(85, 84, 84, 0.95);
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em;
+    margin: 0.1em;
+    color: white;
+}
+
+.weather-category-temperature,
+.weather-category-weather {
+    background-color: rgba(32, 31, 31, 0.4);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.39);
     border-radius: 0.5em;
-    padding: 0.5em;
+    padding: 0.2em;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.weather-card-details {
+    font-size: 0.5em;
+}
+
 
 .weather-category-temperature {
     grid-column: 1;
@@ -108,8 +151,14 @@ footer {
     font-size: 2em;
 }
 
-#description {
-    font-size: 0.75em;
+.weather-container-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
 }
 
 
