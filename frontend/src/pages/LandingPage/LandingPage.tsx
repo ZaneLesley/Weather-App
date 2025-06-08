@@ -1,0 +1,48 @@
+import {useEffect, useState} from "react";
+import {asciiWeather} from '../../data/asciiWeather.tsx'
+
+export default function LandingPage() {
+    const frames = Object.keys(asciiWeather["sunny"]).length;
+    const [frameIndex, setFrameIndex] = useState(0);
+
+    useEffect(() => {
+        async function fetchWeather() {
+            const response = await fetch(
+                `${import.meta.env.VITE_VISUAL_CROSSING_API_URL}73135/next7days` +
+                `?key=${import.meta.env.VITE_VISUAL_CROSSING_API_KEY}` +
+                `&lang=id`, {
+                    method: 'GET',
+                    headers: {'Content-Type': 'application/json'},
+                    mode: 'cors',
+                }
+            )
+
+            if (!response.ok) {
+                console.error(`Error fetching weather data: ${response.status}: ${response.statusText}`)
+            }
+
+            const data = await response.json()
+            console.log(data)
+        }
+
+        console.log(asciiWeather.sunny)
+        fetchWeather()
+    }, [])
+
+// Rotate every N milliseconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setFrameIndex((prev) => (prev + 1) % frames);
+        }, 2000);
+
+        return () => clearInterval(interval);
+    }, [frames]);
+
+    return (
+        <>
+            <pre className="m-0 flex flex-col justify-center flex-1">
+                {asciiWeather.sunny[frameIndex]}
+            </pre>
+        </>
+    )
+}
