@@ -1,13 +1,14 @@
+import type {JSX} from "react"
 import {useEffect, useState} from "react";
 import {asciiWeather} from '../../data/asciiWeather.tsx'
 
-export default function LandingPage() {
-    const frames = Object.keys(asciiWeather["sunny"]).length;
-    const [frameIndex, setFrameIndex] = useState(0);
+export default function LandingPage(): JSX.Element {
+    const frames: number = Object.keys(asciiWeather["sunny"]).length;
+    const [frameIndex, setFrameIndex] = useState<number>(0);
 
     useEffect(() => {
-        async function fetchWeather() {
-            const response = await fetch(
+        async function fetchWeather(): Promise<void> {
+            const response: Response = await fetch(
                 `${import.meta.env.VITE_VISUAL_CROSSING_API_URL}73135/next7days` +
                 `?key=${import.meta.env.VITE_VISUAL_CROSSING_API_KEY}` +
                 `&lang=id`, {
@@ -21,7 +22,7 @@ export default function LandingPage() {
                 console.error(`Error fetching weather data: ${response.status}: ${response.statusText}`)
             }
 
-            const data = await response.json()
+            const data: unknown = await response.json()
             console.log(data)
         }
 
@@ -31,8 +32,8 @@ export default function LandingPage() {
 
 // Rotate every N milliseconds
     useEffect(() => {
-        const interval = setInterval(() => {
-            setFrameIndex((prev) => (prev + 1) % frames);
+        const interval: number = setInterval(() => {
+            setFrameIndex((prev: number) => (prev + 1) % frames);
         }, 2000);
 
         return () => clearInterval(interval);
