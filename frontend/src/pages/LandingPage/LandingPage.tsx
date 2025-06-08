@@ -34,7 +34,7 @@ export default function LandingPage(): JSX.Element {
     useEffect(() => {
         const interval: number = setInterval(() => {
             setFrameIndex((prev: number) => (prev + 1) % frames);
-        }, 2000);
+        }, 1000);
 
         return () => clearInterval(interval);
     }, [frames]);

@@ -23,8 +23,11 @@ export default tseslint.config(
                 'warn',
                 {allowConstantExport: true},
             ],
-            "@typescript-eslint/no-explicit-any": "error",
-            "@typescript-eslint/explicit-module-boundary-types": "error"
+            '@typescript-eslint/no-unused-vars': ['error', {argsIgnorePattern: '^_'}],
+            '@typescript-eslint/no-explicit-any': 'error',
+            '@typescript-eslint/explicit-function-return-type': ['error', {allowExpressions: true}],
+            '@typescript-eslint/consistent-type-imports': 'error',
+            '@typescript-eslint/no-floating-promises': 'error',
         },
     },
 );
