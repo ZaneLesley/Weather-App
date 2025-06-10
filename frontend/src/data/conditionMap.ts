@@ -48,12 +48,14 @@ export const conditionMap: Record<string, string> = {
     type_30: "fog",         // Smoke Or Haze
     type_7: "fog",	        // Dust storm
 
-    // Cloudy
+    // Party-Cloudy
     type_27: "cloudy",      // Sky Coverage Decreasing
     type_28: "cloudy",      // Sky Coverage Increasing
     type_29: "cloudy",      // Sky Unchanged
     type_41: "cloudy",      // Overcast
     type_42: "cloudy",      // Partially Cloudy
+
+    // CLear
     type_43: "clear"        // Clear
 };
 
