@@ -3,7 +3,8 @@ import {useEffect, useState} from "react";
 import {asciiWeather} from '../../data/asciiWeather.tsx'
 
 export default function LandingPage(): JSX.Element {
-    const frames: number = Object.keys(asciiWeather["sunny"]).length;
+    const test = "storm"
+    const frames: number = Object.keys(asciiWeather[test]).length;
     const [frameIndex, setFrameIndex] = useState<number>(0);
 
     useEffect(() => {
@@ -42,7 +43,7 @@ export default function LandingPage(): JSX.Element {
     return (
         <>
             <pre className="m-0 flex flex-col justify-center flex-1">
-                {asciiWeather.sunny[frameIndex]}
+                {asciiWeather[test][frameIndex]}
             </pre>
         </>
     )
