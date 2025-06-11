@@ -12,7 +12,7 @@ export default function LandingPage(): JSX.Element {
     console.log(data)
     return (
         <>
-            <div className="flex flex-row justify-center w-full m-4 flex-wrap gap-4">
+            <div className="flex flex-row justify-center w-full m-auto flex-wrap gap-4">
                 {data?.days.map((day: WeatherDay) => (
                     <WeatherCard day={day} key={day.datetime}/>
                 ))}
