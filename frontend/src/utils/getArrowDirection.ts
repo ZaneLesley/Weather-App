@@ -11,32 +11,35 @@ import {
 
 
 export default function getArrowDirection(direction: number): string {
-    if (direction < 0 || direction >= 360) {
+    // This makes it so it seems like the arrow is following the wind path, and not just the direction that the wind
+    // Is currently blowing from.
+    const flippedDirection = (direction + 180) % 360;
+    if (flippedDirection < 0 || flippedDirection >= 360) {
         throw new Error('Direction must be between 0 and 360.');
     }
 
-    if (direction >= 337.5 || direction < 22.5) {
+    if (flippedDirection >= 337.5 || flippedDirection < 22.5) {
         return mdiArrowUpThin
     }
-    if (direction >= 22.5 && direction < 67.5) {
+    if (flippedDirection >= 22.5 && flippedDirection < 67.5) {
         return mdiArrowTopRightThin;
     }
-    if (direction >= 67.5 && direction < 112.5) {
+    if (flippedDirection >= 67.5 && flippedDirection < 112.5) {
         return mdiArrowRightThin;
     }
-    if (direction >= 112.5 && direction < 157.5) {
+    if (flippedDirection >= 112.5 && flippedDirection < 157.5) {
         return mdiArrowBottomRightThin;
     }
-    if (direction >= 157.5 && direction < 202.5) {
+    if (flippedDirection >= 157.5 && flippedDirection < 202.5) {
         return mdiArrowDownThin;
     }
-    if (direction >= 202.5 && direction < 247.5) {
+    if (flippedDirection >= 202.5 && flippedDirection < 247.5) {
         return mdiArrowBottomLeftThin;
     }
-    if (direction >= 247.5 && direction < 292.5) {
+    if (flippedDirection >= 247.5 && flippedDirection < 292.5) {
         return mdiArrowLeftThin;
     }
-    if (direction >= 292.5 && direction < 337.5) {
+    if (flippedDirection >= 292.5 && flippedDirection < 337.5) {
         return mdiArrowTopLeftThin;
     }
 

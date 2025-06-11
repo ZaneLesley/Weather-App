@@ -30,11 +30,11 @@ export default function WeatherCard({day}: { day: WeatherDay }) {
                     <div>{decodeWeatherID(day.description)}</div>
                 </div>
                 <div className="flex flex-rox justify-between">
-                    <div>Max Temp: {day.tempmax}</div>
-                    <div>Feels Like: {day.feelslikemin}</div>
+                    <div>Max Temp: {day.tempmax}°F</div>
+                    <div>Feels Like: {day.feelslikemin}°F</div>
                 </div>
                 <div className="flex flex-row justify-between">
-                    <div>rain amount: {day.precip}</div>
+                    <div>rain amount: {day.precip} in.</div>
                     <div>rain prob: {day.precipprob}%</div>
                 </div>
                 <div className="flex flex-row justify-between">
