@@ -123,9 +123,14 @@ export const asciiWeather: Record<string, Record<number, JSX.Element[]>> = {
 
     partlyCloudy: {
         0: [
-            <span key={1} className={`${yellow} ${style}`}>{` \\   /`}</span>,
-            <span key={2} className={`${yellow} ${style}`}>{`  .-.`}</span>,
-            <div key={3}><span className={`${yellow} ${style}`}>{`―(`}</span>
+            <div key={1}>
+                <span className={`${yellow} ${style}`}>{`\\   /`}</span>
+            </div>,
+            <div key={2}>
+                <span className={`${yellow} ${style}`}>{`.-.`}</span>
+            </div>,
+            <div key={3}>
+                <span className={`${yellow} ${style}`}>{`―(`}</span>
                 <span className={`${gray} ${style}`}>{`   ,-.`}</span>
             </div>,
             <div key={4}>
