@@ -1,6 +1,6 @@
 import type {JSX} from "react";
 
-const style = "w-[10ch] text-center leading-tight"
+const style = "w-full text-center leading-tight"
 const yellow = "text-yellow-500"
 const gray = "text-gray-500"
 const lightBlue = "text-blue-300"

@@ -26,8 +26,8 @@ export default function WeatherCard({day}: { day: WeatherDay }) {
     return (
         <>
             <div className="flex flex-col w-1/4 min-w-80 border-1 border-gray-600 p-4">
-                <div className="mb-4">{dateInfo}</div>
-                <div className="flex flex-rox justify-around">
+                <div className="mb-4 border-b-1 border-gray-300">{dateInfo}</div>
+                <div className="flex flex-rox justify-around mb-4">
                 <pre className="flex flex-col w-1/2">
                     {asciiWeather[conditions][frameIndex]}
                 </pre>
