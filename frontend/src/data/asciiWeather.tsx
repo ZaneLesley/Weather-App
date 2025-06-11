@@ -5,6 +5,7 @@ const yellow = "text-yellow-500"
 const gray = "text-gray-500"
 const lightBlue = "text-blue-300"
 const blue = "text-blue-600"
+
 export const asciiWeather: Record<string, Record<number, JSX.Element[]>> = {
     cloudy: {
         0: [
@@ -214,7 +215,7 @@ export const asciiWeather: Record<string, Record<number, JSX.Element[]>> = {
             <span key={1} className={`${yellow} ${style}`}>{` \\ \\`}</span>,
             <span key={2} className={`${yellow} ${style}`}>{`__\\ \\`}</span>,
             <span key={3} className={`${yellow} ${style}`}>{` \\  __\\`}</span>,
-            <span key={4} className={`${yellow} ${style}`}>{`  \\ \\`}</span>,
+            <span key={4} className={`${yellow} ${style}`}>{`\\ \\`}</span>,
             <span key={5} className={`${yellow} ${style}`}>{` `}</span>,
             <span key={6} className={`${yellow} ${style}`}>{` `}</span>
         ],
@@ -222,12 +223,12 @@ export const asciiWeather: Record<string, Record<number, JSX.Element[]>> = {
             <span key={1} className={`${yellow} ${style}`}>{` \\ \\`}</span>,
             <span key={2} className={`${yellow} ${style}`}>{`__\\ \\`}</span>,
             <span key={3} className={`${yellow} ${style}`}>{` \\  __\\`}</span>,
-            <span key={4} className={`${yellow} ${style}`}>{`  \\ \\`}</span>,
-            <span key={5} className={`${yellow} ${style}`}>{`   \\ \\`}</span>,
-            <span key={6} className={`${yellow} ${style}`}>{`     \\`}</span>
+            <span key={4} className={`${yellow} ${style}`}>{`\\ \\`}</span>,
+            <span key={5} className={`${yellow} ${style}`}>{` \\ \\`}</span>,
+            <span key={6} className={`${yellow} ${style}`}>{`   \\`}</span>
         ],
     },
-    
+
     sunny: {
         0: [
             <span key={1} className={`${yellow} ${style}`}>{`\\   /`}</span>,

@@ -7,11 +7,11 @@ export const conditionMap: Record<string, string> = {
     type_20: "rain",        // Precipitation In Vicinity
 
     // Rain
-    type_3: "light-rain",   // Heavy Drizzle
-    type_5: "light-rain",   // Heavy Drizzle/Rain
-    type_21: "light-rain",  // Rain
-    type_24: "light-rain",  // Rain Showers
-    type_25: "light-rain",  // Heavy Rain
+    type_3: "lightRain",   // Heavy Drizzle
+    type_5: "lightRain",   // Heavy Drizzle/Rain
+    type_21: "lightRain",  // Rain
+    type_24: "lightRain",  // Rain Showers
+    type_25: "lightRain",  // Heavy Rain
 
     // Snow
     type_1: "snow",         // Blowing/Drifting Snow
@@ -49,12 +49,13 @@ export const conditionMap: Record<string, string> = {
     type_7: "fog",	        // Dust storm
 
     // Party-Cloudy
-    type_27: "cloudy",      // Sky Coverage Decreasing
-    type_28: "cloudy",      // Sky Coverage Increasing
-    type_29: "cloudy",      // Sky Unchanged
-    type_41: "cloudy",      // Overcast
-    type_42: "cloudy",      // Partially Cloudy
+    type_27: "partlyCloudy",      // Sky Coverage Decreasing
+    type_29: "partlyCloudy",      // Sky Unchanged
+    type_42: "partlyCloudy",      // Partially Cloudy
 
+    // Cloudy
+    type_28: "cloudy",      // Sky Coverage Increasing
+    type_41: "cloudy",      // Overcast
     // CLear
     type_43: "clear"        // Clear
 };

@@ -1,50 +1,25 @@
 import type {JSX} from "react"
-import {useEffect, useState} from "react";
-import {asciiWeather} from '../../data/asciiWeather.tsx'
+import {useWeather} from '../../hooks/useWeather'
+import WeatherCard from "./WeatherCard.tsx";
+import type {WeatherDay} from "../../types/weatherData.ts";
 
 export default function LandingPage(): JSX.Element {
-    const test = "storm"
-    const frames: number = Object.keys(asciiWeather[test]).length;
-    const [frameIndex, setFrameIndex] = useState<number>(0);
+    const {data, isLoading, error} = useWeather();
 
-    useEffect(() => {
-        async function fetchWeather(): Promise<void> {
-            const response: Response = await fetch(
-                `${import.meta.env.VITE_VISUAL_CROSSING_API_URL}73135/next7days` +
-                `?key=${import.meta.env.VITE_VISUAL_CROSSING_API_KEY}` +
-                `&lang=id`, {
-                    method: 'GET',
-                    headers: {'Content-Type': 'application/json'},
-                    mode: 'cors',
-                }
-            )
+    if (isLoading) return <p>Loading weather...</p>
+    if (error) return <p>Error loading weather</p>
 
-            if (!response.ok) {
-                console.error(`Error fetching weather data: ${response.status}: ${response.statusText}`)
-            }
-
-            const data: unknown = await response.json()
-            console.log(data)
-        }
-
-        console.log(asciiWeather.sunny)
-        fetchWeather()
-    }, [])
-
-// Rotate every N milliseconds
-    useEffect(() => {
-        const interval: number = setInterval(() => {
-            setFrameIndex((prev: number) => (prev + 1) % frames);
-        }, 1000);
-
-        return () => clearInterval(interval);
-    }, [frames]);
-
+    data?.days.map((day, index) => {
+        console.log(index, day);
+    })
     return (
         <>
-            <pre className="m-0 flex flex-col justify-center flex-1">
-                {asciiWeather[test][frameIndex]}
-            </pre>
+            <div className="flex flex-row">
+                {data?.days.map((day: WeatherDay) => (
+                    <WeatherCard day={day} key={day.datetime}/>
+                ))}
+            </div>
         </>
     )
+
 }
