@@ -229,7 +229,7 @@ export const asciiWeather: Record<string, Record<number, JSX.Element[]>> = {
         ],
     },
 
-    sunny: {
+    clear: {
         0: [
             <span key={1} className={`${yellow} ${style}`}>{`\\   /`}</span>,
             <span key={2} className={`${yellow} ${style}`}>{`.-.`}</span>,

@@ -4,10 +4,10 @@ import type {WeatherDay} from "../../types/weatherData.ts";
 import {conditionMap} from "../../data/conditionMap.ts";
 
 export default function WeatherCard({day}: { day: WeatherDay }) {
-    const conditions = conditionMap[day.conditions.split(",")[0]];
-    
-    const frames: number = Object.keys(asciiWeather[conditions]).length;
+    const conditions = conditionMap[day.conditions.split(",")[0].trim()];
     const [frameIndex, setFrameIndex] = useState<number>(0);
+    const frames: number = Object.keys(asciiWeather[conditions]).length;
+
     // Rotate every N milliseconds
     useEffect(() => {
         const interval: number = setInterval(() => {
