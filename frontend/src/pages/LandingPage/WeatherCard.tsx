@@ -20,9 +20,13 @@ export default function WeatherCard({day}: { day: WeatherDay }) {
         return () => clearInterval(interval);
     }, [frames]);
 
+    const date = new Date(day.datetimeEpoch * 1000) // to ms
+    const dateInfo = date.toLocaleDateString(undefined, {weekday: "short", month: "short", day: "numeric"});
+
     return (
         <>
             <div className="flex flex-col w-1/4 border-1 border-gray-600">
+                <div>{dateInfo}</div>
                 <div className="flex flex-rox justify-between">
                 <pre className="m-2 flex flex-col">
                     {asciiWeather[conditions][frameIndex]}

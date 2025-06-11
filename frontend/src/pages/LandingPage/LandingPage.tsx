@@ -9,9 +9,7 @@ export default function LandingPage(): JSX.Element {
     if (isLoading) return <p>Loading weather...</p>
     if (error) return <p>Error loading weather</p>
 
-    data?.days.map((day, index) => {
-        console.log(index, day);
-    })
+    console.log(data)
     return (
         <>
             <div className="flex flex-row justify-center w-full m-4 flex-wrap gap-4">
