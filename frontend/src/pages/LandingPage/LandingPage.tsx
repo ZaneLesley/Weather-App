@@ -20,7 +20,7 @@ export default function LandingPage(): JSX.Element {
     useEffect(() => {
         async function getZipCode() {
             const result = await getCurrentZipcode()
-            console.log(result)
+            console.log("result", result)
         }
 
         getZipCode()

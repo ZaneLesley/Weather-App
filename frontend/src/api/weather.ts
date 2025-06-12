@@ -22,14 +22,11 @@ export const getCurrentZipcode = async () => {
                         `${import.meta.env.VITE_OPEN_CAGE_API_URL}q=${latitude}+${longitude}&key=${import.meta.env.VITE_OPEN_CAGE_API_KEY}`
                     );
 
-                    if (!response.ok) {
-                        throw new Error(`Response status: ${response.status}`);
-                    }
-
                     const data = await response.json();
                     const zip = data.results?.[0]?.components?.postcode;
                     resolve(zip);
                 } catch (err) {
+                    console.error(err);
                     reject(err);
                 }
             },
