@@ -18,12 +18,15 @@ export const getCurrentZipcode = async () => {
             async (position) => {
                 try {
                     const {latitude, longitude} = position.coords;
+                    console.log(latitude, longitude);
                     const response = await fetch(
                         `${import.meta.env.VITE_OPEN_CAGE_API_URL}q=${latitude}+${longitude}&key=${import.meta.env.VITE_OPEN_CAGE_API_KEY}`
                     );
 
                     const data = await response.json();
+                    console.log("data", data);
                     const zip = data.results?.[0]?.components?.postcode;
+                    console.log("zip", zip);
                     resolve(zip);
                 } catch (err) {
                     console.error(err);
