@@ -2,6 +2,9 @@ import type {WeatherData} from '../types/weatherData.ts'
 
 export const fetchWeather = async (zipcode: string): Promise<WeatherData> => {
     console.log("Fetching weather...");
+    if (zipcode === '') {
+        throw new Error("zipcode is required");
+    }
     const response = await fetch(
         `${import.meta.env.VITE_VISUAL_CROSSING_API_URL}${zipcode}/next6days` +
         `?key=${import.meta.env.VITE_VISUAL_CROSSING_API_KEY}` +
@@ -12,8 +15,8 @@ export const fetchWeather = async (zipcode: string): Promise<WeatherData> => {
     return response.json()
 }
 
-export const getCurrentZipcode = async () => {
-    return new Promise<string>((resolve, reject) => {
+export const getCurrentZipcode = async (): Promise<string | null> => {
+    return new Promise<string | null>((resolve) => {
         navigator.geolocation.getCurrentPosition(
             async (position) => {
                 try {
@@ -26,12 +29,13 @@ export const getCurrentZipcode = async () => {
                     const zip = data.results?.[0]?.components?.postcode;
                     resolve(zip);
                 } catch (err) {
-                    reject(err);
+                    console.error(err);
+                    resolve(null)
                 }
             },
             (error) => {
-                console.error("Geolocation Error: ", error);
-                reject(error);
+                console.warn("Geolocation Error: ", error);
+                resolve(null);
             }
         );
     });

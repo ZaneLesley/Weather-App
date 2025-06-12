@@ -20,7 +20,7 @@ export default function LandingPage(): JSX.Element {
     useEffect(() => {
         async function getZipCode() {
             const result = await getCurrentZipcode()
-            console.log("result", result)
+            console.log(result)
             if (result) {
                 setZip(result)
             } else {
@@ -31,13 +31,10 @@ export default function LandingPage(): JSX.Element {
         getZipCode()
     }, [])
 
-    if (isLoading) return <p>Loading weather...</p>
-    if (error) return <p>Error loading weather</p>
-
     //console.log(data)
     return (
         <>
-            <Header onSubmit={handleSubmit} inputZip={inputZip} setInputZip={setInputZip}></Header>
+            <Header onSubmit={handleSubmit} inputZip={inputZip} setInputZip={setInputZip} currentZip={zip}></Header>
             <div className="flex flex-row justify-center w-full m-auto flex-wrap gap-4">
                 {data?.days.map((day: WeatherDay) => (
                     <WeatherCard day={day} key={day.datetime}/>
