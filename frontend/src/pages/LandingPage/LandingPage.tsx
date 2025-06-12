@@ -10,7 +10,7 @@ import {getCurrentZipcode} from "../../api/weather.ts";
 export default function LandingPage(): JSX.Element {
     const [inputZip, setInputZip] = useState("");
     const [zip, setZip] = useState('')
-    const {data, isLoading, error} = useWeather(zip);
+    const {data} = useWeather(zip);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
