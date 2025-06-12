@@ -18,13 +18,14 @@ export default function LandingPage(): JSX.Element {
     }
 
     useEffect(() => {
-        getCurrentZipcode()
+        const result = getCurrentZipcode()
+        console.log(result)
     }, [])
 
     if (isLoading) return <p>Loading weather...</p>
     if (error) return <p>Error loading weather</p>
 
-    console.log(data)
+    //console.log(data)
     return (
         <>
             <Header onSubmit={handleSubmit} inputZip={inputZip} setInputZip={setInputZip}></Header>
