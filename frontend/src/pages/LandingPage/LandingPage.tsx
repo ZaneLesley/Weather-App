@@ -1,10 +1,25 @@
 import type {JSX} from "react"
+import {useEffect, useState} from 'react'
 import {useWeather} from '../../hooks/useWeather'
 import WeatherCard from "./WeatherCard.tsx";
 import type {WeatherDay} from "../../types/weatherData.ts";
 
+import Header from "./Header.tsx"
+import {getCurrentZipcode} from "../../api/weather.ts";
+
 export default function LandingPage(): JSX.Element {
-    const {data, isLoading, error} = useWeather();
+    const [inputZip, setInputZip] = useState("");
+    const [zip, setZip] = useState('73135')
+    const {data, isLoading, error} = useWeather(zip);
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        setZip(inputZip)
+    }
+
+    useEffect(() => {
+        getCurrentZipcode()
+    }, [])
 
     if (isLoading) return <p>Loading weather...</p>
     if (error) return <p>Error loading weather</p>
@@ -12,6 +27,7 @@ export default function LandingPage(): JSX.Element {
     console.log(data)
     return (
         <>
+            <Header onSubmit={handleSubmit} inputZip={inputZip} setInputZip={setInputZip}></Header>
             <div className="flex flex-row justify-center w-full m-auto flex-wrap gap-4">
                 {data?.days.map((day: WeatherDay) => (
                     <WeatherCard day={day} key={day.datetime}/>
