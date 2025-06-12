@@ -18,8 +18,12 @@ export default function LandingPage(): JSX.Element {
     }
 
     useEffect(() => {
-        const result = getCurrentZipcode()
-        console.log(result)
+        async function getZipCode() {
+            const result = await getCurrentZipcode()
+            console.log(result)
+        }
+
+        getZipCode()
     }, [])
 
     if (isLoading) return <p>Loading weather...</p>
