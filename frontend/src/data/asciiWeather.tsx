@@ -240,14 +240,16 @@ export const asciiWeather: Record<string, Record<number, JSX.Element[]>> = {
             <span key={2} className={`${yellow} ${style}`}>{`.-.`}</span>,
             <span key={3} className={`${yellow} ${style}`}>{`― (   ) ―`}</span>,
             <span key={4} className={`${yellow} ${style}`}>{`\`-’`}</span>,
-            <span key={5} className={`${yellow} ${style}`}>{`/   \\`}</span>
+            <span key={5} className={`${yellow} ${style}`}>{`/   \\`}</span>,
+            <span key={6} className={`${yellow} ${style}`}>{` `}</span>
         ],
         1: [
             <span key={1} className={`${yellow} ${style}`}>{`.   |   .`}</span>,
             <span key={2} className={`${yellow} ${style}`}>{`. .-. .`}</span>,
             <span key={3} className={`${yellow} ${style}`}>{`(   )`}</span>,
             <span key={4} className={`${yellow} ${style}`}>{`. \`-’ .`}</span>,
-            <span key={5} className={`${yellow} ${style}`}>{`.   |   .`}</span>
+            <span key={5} className={`${yellow} ${style}`}>{`.   |   .`}</span>,
+            <span key={6} className={`${yellow} ${style}`}>{` `}</span>
         ]
     }
 };

@@ -27,6 +27,29 @@ export interface WeatherDay {
     solarradiation: number;
     snow: number;
     snowdepth: number;
+    hours: {
+        datetime: string;
+        datetimeEpoch: number;
+        conditions: string;
+        feelslike: number;
+        humidity: number;
+        dew: number;
+        precip: number;
+        precipprob: number;
+        snow: number;
+        snowdepth: number;
+        winddir: number;
+        windgust: number;
+        windspeed: number;
+        pressure: number;
+        visibility: number;
+        solarradiation: number;
+        solarenergy: number;
+        uvindex: number;
+        severerisk: number;
+        cloudcover: number;
+        preciptype: string;
+    }[];
 }
 
 export interface CurrentConditions {
