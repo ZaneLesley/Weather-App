@@ -41,7 +41,7 @@ export default function LandingPage(): JSX.Element {
     //console.log(data)
     return (
         <>
-            <div className="flex flex-col justify-between item-center min-h-screen w-full">
+            <div className="flex flex-col justify-between item-center min-h-screen w-full-screen">
                 <Header onSubmit={handleSubmit} inputZip={inputZip} setInputZip={setInputZip} currentZip={zip}></Header>
                 {isLoading && <Loading></Loading>}
                 {error && <ErrorDiv error={error}/>}
