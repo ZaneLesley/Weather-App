@@ -4,7 +4,7 @@ import {mdiEmailPlus, mdiGithub} from '@mdi/js';
 export default function Footer() {
     return (
         <>
-            <div className="flex flex-col justify-center items-center text-center w-24/25 m-4 sm:flex-row">
+            <div className="flex flex-col justify-around items-center text-center w-full m-4 sm:flex-row">
                 <div className="flex flex-row justify-center w-1/8">
                     <a href={"mailto:zanelesley@outlook.com"} target="_blank" rel="noopener noreferrer">
                         <Icon path={mdiEmailPlus} size={1.5}></Icon>
