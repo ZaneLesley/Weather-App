@@ -6,7 +6,7 @@ export const fetchWeather = async (zipcode: string): Promise<WeatherData> => {
         throw new Error("zipcode is required");
     }
     const response = await fetch(
-        `${import.meta.env.VITE_VISUAL_CROSSING_API_URL}${zipcode}/next6days` +
+        `${import.meta.env.VITE_VISUAL_CROSSING_API_URL}${zipcode}/next9days` +
         `?key=${import.meta.env.VITE_VISUAL_CROSSING_API_KEY}` +
         `&lang=id`)
     if (!response.ok) {
