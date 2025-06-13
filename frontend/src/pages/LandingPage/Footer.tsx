@@ -4,8 +4,8 @@ import {mdiEmailPlus, mdiGithub} from '@mdi/js';
 export default function Footer() {
     return (
         <>
-            <div className="flex flex-col justify-center items-center text-center m-4 sm:flex-row">
-                <div className="flex flex-row w-1/4">
+            <div className="flex flex-col justify-center items-center text-center w-24/25 m-4 sm:flex-row">
+                <div className="flex flex-row justify-center w-1/8">
                     <a href={"mailto:zanelesley@outlook.com"} target="_blank" rel="noopener noreferrer">
                         <Icon path={mdiEmailPlus} size={1.5}></Icon>
                     </a>
@@ -16,7 +16,7 @@ export default function Footer() {
                 <div className="m-auto">Website Created by
                     <a href={"https://zanelesley.com/"} target="_blank" rel="noopener noreferrer"> Zane Lesley</a>
                 </div>
-                <div className="w-1/4"></div>
+                <div className="w-1/8"></div>
             </div>
         </>
     );

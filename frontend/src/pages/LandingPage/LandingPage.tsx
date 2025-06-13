@@ -1,17 +1,19 @@
 import type {JSX} from "react"
 import {useEffect, useState} from 'react'
+import type {WeatherDay} from "../../types/weatherData.ts";
 import {useWeather} from '../../hooks/useWeather'
 import WeatherCard from "./WeatherCard.tsx";
-import type {WeatherDay} from "../../types/weatherData.ts";
+import {getCurrentZipcode} from "../../api/weather.ts";
 
 import Header from "./Header.tsx"
 import Footer from "./Footer.tsx";
-import {getCurrentZipcode} from "../../api/weather.ts";
+import Loading from "./Loading.tsx";
+import ErrorDiv from "./ErrorDiv.tsx";
 
 export default function LandingPage(): JSX.Element {
     const [inputZip, setInputZip] = useState("");
     const [zip, setZip] = useState('')
-    const {data} = useWeather(zip);
+    const {data, isLoading, error} = useWeather(zip);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -32,16 +34,21 @@ export default function LandingPage(): JSX.Element {
         getZipCode()
     }, [])
 
+
     //console.log(data)
     return (
         <>
-            <Header onSubmit={handleSubmit} inputZip={inputZip} setInputZip={setInputZip} currentZip={zip}></Header>
-            <div className="flex flex-row justify-center w-full m-auto flex-wrap gap-4">
-                {data?.days.map((day: WeatherDay) => (
-                    <WeatherCard day={day} key={day.datetime}/>
-                ))}
+            <div className="flex flex-col justify-between item-center min-h-screen w-full">
+                <Header onSubmit={handleSubmit} inputZip={inputZip} setInputZip={setInputZip} currentZip={zip}></Header>
+                {isLoading && <Loading></Loading>}
+                {error && <ErrorDiv error={error}/>}
+                <div className="flex flex-row justify-center w-full flex-wrap gap-4">
+                    {data?.days.map((day: WeatherDay) => (
+                        <WeatherCard day={day} key={day.datetime}/>
+                    ))}
+                </div>
+                <Footer></Footer>
             </div>
-            <Footer></Footer>
         </>
     )
 
