@@ -5,6 +5,7 @@ import WeatherCard from "./WeatherCard.tsx";
 import type {WeatherDay} from "../../types/weatherData.ts";
 
 import Header from "./Header.tsx"
+import Footer from "./Footer.tsx";
 import {getCurrentZipcode} from "../../api/weather.ts";
 
 export default function LandingPage(): JSX.Element {
@@ -40,6 +41,7 @@ export default function LandingPage(): JSX.Element {
                     <WeatherCard day={day} key={day.datetime}/>
                 ))}
             </div>
+            <Footer></Footer>
         </>
     )
 
