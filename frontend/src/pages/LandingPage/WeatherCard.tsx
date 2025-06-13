@@ -10,9 +10,10 @@ export default function WeatherCard({day}: { day: WeatherDay }) {
     const date = new Date(day.datetimeEpoch * 1000) // to ms
     const dateInfo = date.toLocaleDateString(undefined, {weekday: "short", month: "short", day: "numeric"});
 
+
     return (
         <>
-            <div className="flex flex-col w-1/4 min-w-80 border-1 border-gray-600 p-4 gap-4">
+            <div className="flex flex-col w-1/6 min-w-80 border-1 border-gray-600 p-4 gap-4">
                 <div className="border-b-1 border-gray-300">{dateInfo}</div>
                 <AsciiWeatherDisplay day={day} now={now}></AsciiWeatherDisplay>
                 <div className="flex flex-row justify-around gap-4">

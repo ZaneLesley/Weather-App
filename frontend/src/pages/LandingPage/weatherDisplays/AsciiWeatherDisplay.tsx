@@ -20,11 +20,11 @@ export default function AsciiWeatherDisplay({day, now}: { day: WeatherDay, now: 
 
     return (
         <>
-            <div className="flex flex-col justify-around mb-4">
+            <div className="flex-1 flex-col justify-around mb-4">
                     <pre className="flex flex-col w-1/2 m-auto">
                         {asciiWeather[conditions][frameIndex]}
                     </pre>
-                <div className="w-1/2 m-auto">{decodeWeatherID(day.description)}.</div>
+                <div className="m-auto p-2">{decodeWeatherID(day.description)}.</div>
             </div>
         </>
     )
