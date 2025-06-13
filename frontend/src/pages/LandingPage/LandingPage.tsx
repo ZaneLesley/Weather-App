@@ -9,11 +9,14 @@ import Header from "./Header.tsx"
 import Footer from "./Footer.tsx";
 import Loading from "./Loading.tsx";
 import ErrorDiv from "./ErrorDiv.tsx";
+import WeatherModal from "./WeatherModal.tsx";
 
 export default function LandingPage(): JSX.Element {
     const [inputZip, setInputZip] = useState("");
     const [zip, setZip] = useState('')
     const {data, isLoading, error} = useWeather(zip);
+    const [index, setIndex] = useState<number>(0)
+    const [showModal, setShowModal] = useState<boolean>(false)
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -43,11 +46,15 @@ export default function LandingPage(): JSX.Element {
                 {isLoading && <Loading></Loading>}
                 {error && <ErrorDiv error={error}/>}
                 <div className="flex flex-row justify-center w-full flex-wrap gap-4">
-                    {data?.days.map((day: WeatherDay) => (
-                        <WeatherCard day={day} key={day.datetime}/>
+                    {data?.days.map((day: WeatherDay, i: number) => (
+                        <WeatherCard index={i} day={day} setIndex={setIndex} setShowModal={setShowModal}
+                                     key={day.datetime}/>
                     ))}
                 </div>
                 <Footer></Footer>
+                {showModal &&
+                    <WeatherModal data={data?.days[index]} showModal={showModal}
+                                  setShowModal={setShowModal}></WeatherModal>}
             </div>
         </>
     )
