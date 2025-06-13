@@ -25,7 +25,7 @@ export default function WeatherCard({day, index, setShowModal, setIndex}: {
     return (
         <>
             <button onClick={handleClick} className="flex flex-col w-1/6 min-w-90 border-1 border-gray-600 p-4 gap-4">
-                <div className="border-b-1 border-gray-300 w-full">{dateInfo}</div>
+                <div className="border-b-1 border-gray-300">{dateInfo}</div>
                 <AsciiWeatherDisplay day={day} now={now}></AsciiWeatherDisplay>
                 <div className="flex flex-row justify-around gap-4">
                     <TempWeatherDisplay day={day} now={now}/>
