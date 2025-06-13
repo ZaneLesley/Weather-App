@@ -9,14 +9,6 @@ export default function WeatherModal({data, showModal, setShowModal}: {
     setShowModal: React.Dispatch<SetStateAction<boolean>>
 }) {
 
-    if (data == null) {
-        return (<></>)
-    }
-
-    const date = new Date(data?.datetimeEpoch * 1000) // to ms
-    const dateInfo = date.toLocaleDateString(undefined, {weekday: "short", month: "short", day: "numeric"});
-    console.log(data)
-
     const handleClose = () => {
         setShowModal(false)
     }
@@ -29,7 +21,7 @@ export default function WeatherModal({data, showModal, setShowModal}: {
                 <Box
                     className="max-w-100 max-h-100 overflow-y-auto m-auto translate-y-1/2 bg-gray-400/70
                     rounded-lg p-4">
-                    <div className="border-b-1 border-gray-300">{dateInfo}</div>
+                    <div className="border-b-1 border-gray-300"></div>
                     {data?.hours.map((hour) => (
                         <motion.div
                             initial={{opacity: 0, scale: 0.8}}
