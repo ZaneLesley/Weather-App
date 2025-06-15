@@ -30,7 +30,7 @@ export default function WeatherModal({data, showModal, setShowModal}: {
             >
                 <Box
                     className="max-w-100 max-h-100 overflow-y-auto m-auto translate-y-1/2 bg-gray-400
-                    rounded-lg p-4">
+                    rounded-lg p-4 border-2 border-red-500 drop-shadow-2xl">
                     <div className="border-b-1 border-gray-300 text-center">{dateInfo}</div>
                     {data?.hours.map((hour) => (
                         <motion.div
@@ -51,7 +51,6 @@ export default function WeatherModal({data, showModal, setShowModal}: {
                                 <div>{hour.precipprob}%</div>
                             </div>
                             <div className="w-1/3">{hour.conditions}</div>
-
                         </motion.div>
                     ))}
 
