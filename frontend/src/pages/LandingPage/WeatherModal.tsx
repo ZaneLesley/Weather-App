@@ -4,6 +4,8 @@ import {Box, Modal} from "@mui/material";
 import {motion} from "motion/react"
 import Icon from '@mdi/react';
 import {mdiWeatherRainy} from '@mdi/js';
+import {conditionMapIcon} from "../../data/conditionMapIcon.tsx";
+import {conditionMap} from "../../data/conditionMap.ts";
 
 export default function WeatherModal({data, showModal, setShowModal}: {
     data: WeatherDay | undefined
@@ -50,7 +52,8 @@ export default function WeatherModal({data, showModal, setShowModal}: {
                                 <Icon path={mdiWeatherRainy} size={1}/>
                                 <div>{hour.precipprob}%</div>
                             </div>
-                            <div className="w-1/3">{hour.conditions}</div>
+                            <div
+                                className="w-1/3 flex justify-center">{conditionMapIcon[conditionMap[hour.conditions]]}</div>
                         </motion.div>
                     ))}
 
